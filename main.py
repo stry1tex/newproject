@@ -7,7 +7,7 @@ import random
 from random import randint
 
 # тут токен бота
-bot = telebot.TeleBot("5057303407:AAHcmhUnvKZerqtJlWCC5JbI5NSmm4gbf_I")
+bot = telebot.TeleBot("5002959559:AAGGcPREFxvW6bCu4Di295gVzJCWfs-o4GA")
 
 # переменные с данными
 supportid = "AngelinaAvdeeva"
