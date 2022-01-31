@@ -5,9 +5,11 @@ from sqlite3 import Error
 from time import sleep, ctime
 import random
 from random import randint
+import requests
+from requests import get
 
 # тут токен бота
-bot = telebot.TeleBot("5232925392:AAF3cQnNqgkD7Spmd8tSXsbRo30p8y5w65k")
+bot = telebot.TeleBot("5241497569:AAGmEbwwSKQ-tt7-Hi_GNw3L5AlsopfAbDU")
 
 # переменные с данными
 supportid = "AngelinaAvdeeva"
@@ -16,9 +18,9 @@ numberqiwi = ""
 admin = 2146218025
 password = "3331"
 
-list1 = ["Название: 😼 Мини 99₽ Скидка 32%🔥", "Название: 👧🏼 Юные создания 10-16 💧 ЦЕНА: 199₽", "Название: ❤️ lllкоLьные Секс 12-16 😜 ЦЕНА: 277₽ [-70%]",
-					"Название: 👨‍👩‍👧‍👦 ИNСЕSТЫ 👨‍👩‍👧‍👦 ЦЕНА: 339₽ [-50%]", "Название: 👧🏻 Мега Приват 👧🏻 ЦЕНА: 345₽", "Название: 🍌САМАЯ Жесть🍌+🧨Apxивчик🧨 ЦЕНА: 415₽",
-					"Название: 🤑Все включено🤑 ЦЕНА: 520₽ [-35%]", "Название: 🥵 UZНОСЫ 🥵 ЦЕНА: 435₽ [-75%]", "Название: 🔞 FULL BIG PACK 🍭 ЦЕНА: 1000₽", "Название: ✅ PORNHUB PREMIUM ACCOUNT ✅ ЦЕНА: 49₽"]
+list1 = ["Название: 😼 Мини 99₽ Скидка 32%🔥", "Название: 👧🏼 Юные создания 10-16 💧 ЦЕНА: 149₽", "Название: ❤️ lllкоLьные Секс 12-16 😜 ЦЕНА: 199₽ [-50%]",
+					"Название: 👨‍👩‍👧‍👦 ИNСЕSТЫ 👨‍👩‍👧‍👦 ЦЕНА: 219₽ [-50%]", "Название: 👧🏻 Мега Приват 👧🏻 ЦЕНА: 299₽", "Название: 🍌САМАЯ Жесть🍌+🧨Apxивчик🧨 ЦЕНА: 415₽",
+					"Название: 🤑Все включено🤑 ЦЕНА: 520₽ [-35%]", "Название: 🥵 UZНОСЫ 🥵 ЦЕНА: 435₽ [-50%]", "Название: 🔞 FULL BIG PACK 🍭 ЦЕНА: 1000₽", "Название: ✅ PORNHUB PREMIUM ACCOUNT ✅ ЦЕНА: 49₽"]
 
 
 # создание и подключение к бд
@@ -54,20 +56,23 @@ create_tables()
 def start_message(message):
 	markup_reply = telebot.types.InlineKeyboardMarkup()
 	markup_reply.add(telebot.types.InlineKeyboardButton(text='😼 Мини 99₽ Скидка 32% 🔥 ЦЕНА: 99₽', callback_data=1))
-	markup_reply.add(telebot.types.InlineKeyboardButton(text='👧🏼 Юные создания 10-16 💧 ЦЕНА: 199₽', callback_data=2))
-	markup_reply.add(telebot.types.InlineKeyboardButton(text='❤️ lllкоLьные Секс 12-16 😜 ЦЕНА: 277₽ [-70%]', callback_data=3))
-	markup_reply.add(telebot.types.InlineKeyboardButton(text='👨‍👩‍👧‍👦 ИNСЕSТЫ 👨‍👩‍👧‍👦 ЦЕНА: 339₽ [-50%]', callback_data=4))
-	markup_reply.add(telebot.types.InlineKeyboardButton(text='👧🏻 Мега Приват 👧🏻 ЦЕНА: 345₽', callback_data=5))
+	markup_reply.add(telebot.types.InlineKeyboardButton(text='👧🏼 Юные создания 10-16 💧 ЦЕНА: 149₽', callback_data=2))
+	markup_reply.add(telebot.types.InlineKeyboardButton(text='❤️ lllкоLьные Секс 12-16 😜 ЦЕНА: 199₽ [-50%]', callback_data=3))
+	markup_reply.add(telebot.types.InlineKeyboardButton(text='👨‍👩‍👧‍👦 ИNСЕSТЫ 👨‍👩‍👧‍👦 ЦЕНА: 219₽ [-50%]', callback_data=4))
+	markup_reply.add(telebot.types.InlineKeyboardButton(text='👧🏻 Мега Приват 👧🏻 ЦЕНА: 299₽', callback_data=5))
 	markup_reply.add(telebot.types.InlineKeyboardButton(text='🍌САМАЯ Жесть🍌+🧨Apxивчик🧨 ЦЕНА: 415₽', callback_data=6))
 	markup_reply.add(telebot.types.InlineKeyboardButton(text='🤑Все включено🤑 ЦЕНА: 520₽ [-35%]', callback_data=7))
-	markup_reply.add(telebot.types.InlineKeyboardButton(text='🥵 UZНОСЫ 🥵 ЦЕНА: 435₽ [-75%]', callback_data=8))
+	markup_reply.add(telebot.types.InlineKeyboardButton(text='🥵 UZНОСЫ 🥵 ЦЕНА: 435₽ [-55%]', callback_data=8))
 	markup_reply.add(telebot.types.InlineKeyboardButton(text='🔞 FULL BIG PACK 🍭 ЦЕНА: 1000₽', callback_data=9))
 	markup_reply.add(telebot.types.InlineKeyboardButton(text='✅ PORNHUB PREMIUM ACCOUNT ✅ ЦЕНА: 49₽', callback_data=10))
+
 
 
 	register_user(message.from_user.id, message.from_user.username,
 	              message.from_user.first_name, message.from_user.last_name)
 	familiya = message.from_user.last_name
+
+	bot.send_photo(message.chat.id, get(f"https://i.ibb.co/DCSsrDM/3-O9-Tt-IQSke-Y.jpg").content)
 
 	if familiya is not None:
 		bot.send_message(message.chat.id, f'<b>Ваш профиль:</b> \n\n<b>Ваш ID:</b> {message.from_user.id}\n'
@@ -87,7 +92,7 @@ def start_message(message):
 											f'<b>Дата регистрации:</b> {ctime()}\n\n'
 											'🔥 <b>Привет! Через этого бота можно приобрести доступ к npивaткaм с зanpeтными видocaми</b> \n'
 											'📌<i>У нас количество материала в описании полностью совпадает с действительностью, без выдуманных цифр, всё честно и по факту</i> 💕\n'
-											'✅', parse_mode='html', reply_markup=markup_reply)
+											, parse_mode='html', reply_markup=markup_reply)
 
 
 
@@ -106,25 +111,25 @@ def KeyboardInline(call):
 		markup_reply = telebot.types.InlineKeyboardMarkup()
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='❤️‍🔥 Купить', callback_data='buy'))
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='🔙 Назад', callback_data='back'))
-		bot.send_message(call.message.chat.id, f"{list1[1]}\n💰 Цена: 199₽\n\n💭 Описание: 💟💫Здесь находится уже больше контента, чем в мини💫💟", reply_markup = markup_reply)
+		bot.send_message(call.message.chat.id, f"{list1[1]}\n💰 Цена: 149₽\n\n💭 Описание: 💟💫Здесь находится уже больше контента, чем в мини💫💟", reply_markup = markup_reply)
 
 	elif call.data == '3':
 		markup_reply = telebot.types.InlineKeyboardMarkup()
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='❤️‍🔥 Купить', callback_data='buy'))
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='🔙 Назад', callback_data='back'))
-		bot.send_message(call.message.chat.id, f"{list1[2]}\n💰 Цена: 277₽\n\n💭 Описание: 💟Много фоток и видео прямо из школы, более 3000 видео хорошего качества💟", reply_markup = markup_reply)
+		bot.send_message(call.message.chat.id, f"{list1[2]}\n💰 Цена: 199₽\n\n💭 Описание: 💟Много фоток и видео прямо из школы, более 3000 видео хорошего качества💟", reply_markup = markup_reply)
 
 	elif call.data == '4':
 		markup_reply = telebot.types.InlineKeyboardMarkup()
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='❤️‍🔥 Купить', callback_data='buy'))
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='🔙 Назад', callback_data='back'))
-		bot.send_message(call.message.chat.id, f"{list1[3]}\n💰 Цена: 339₽\n\n💭 Описание: 💟Вы получите доступ к диску, одержание которого более 20.000 видео 👩🧑, паки в облаках. Пополнение почти ежедневно новым контентом.💟", reply_markup = markup_reply)
+		bot.send_message(call.message.chat.id, f"{list1[3]}\n💰 Цена: 219₽\n\n💭 Описание: 💟Вы получите доступ к диску, одержание которого более 20.000 видео 👩🧑, паки в облаках. Пополнение почти ежедневно новым контентом.💟", reply_markup = markup_reply)
 
 	elif call.data == '5':
 		markup_reply = telebot.types.InlineKeyboardMarkup()
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='❤️‍🔥 Купить', callback_data='buy'))
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='🔙 Назад', callback_data='back'))
-		bot.send_message(call.message.chat.id, f"{list1[4]}\n💰 Цена: 345₽\n\n💭 Описание: 💟Вы получите доступ к контенту. Содержание: более 5000 запрещённых видео и фото со школьницами. Пополнение почти ежедневно новым контентом.💟", reply_markup = markup_reply)
+		bot.send_message(call.message.chat.id, f"{list1[4]}\n💰 Цена: 299₽\n\n💭 Описание: 💟Вы получите доступ к контенту. Содержание: более 5000 запрещённых видео и фото со школьницами. Пополнение почти ежедневно новым контентом.💟", reply_markup = markup_reply)
 
 	elif call.data == '6':
 		markup_reply = telebot.types.InlineKeyboardMarkup()
@@ -169,6 +174,7 @@ def KeyboardInline(call):
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='🤑Все включено🤑 ЦЕНА: 520₽ [-35%]', callback_data=7))
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='🥵 UZНОСЫ 🥵 ЦЕНА: 435₽ [-75%]', callback_data=8))
 		markup_reply.add(telebot.types.InlineKeyboardButton(text='🔞 FULL BIG PACK 🍭 ЦЕНА: 1000₽', callback_data=9))
+		markup_reply.add(telebot.types.InlineKeyboardButton(text='✅ PORNHUB PREMIUM ACCOUNT ✅ ЦЕНА: 49₽', callback_data=10))
 		bot.send_message(call.message.chat.id, "❕ <b>Вы вернулись в меню</b>",parse_mode='html', reply_markup=markup_reply)
 
 	elif call.data == 'buy':
@@ -180,7 +186,7 @@ def KeyboardInline(call):
 		bot.send_message(call.message.chat.id, f"<b>👇 Для того, что бы купить товар, переведите точную сумму на QIWI кошелёк или КАРТУ.</b>\n❗️ <b>При переводе на QIWI кошелёк укажите комментарий (БЕЗ НЕГО ПЛАТЁЖ АНУЛИРУЕТСЯ)</b>\n\n🥝 <b>QIWI кошелёк:</b> +79672449984\n💭 <b>Комментарий к QIWI:</b> {comment}\n<b>💳 Номер карты:</b> 4890 4947 3261 6792\n\n❕ <i>После успешной оплаты, нажмите на кнопку 'Я оплатил'</i>", reply_markup=markup_reply, parse_mode='html')
 
 	elif call.data == 'imbuy':
-		bot.send_message(call.message.chat.id, "Платёж не был найден, попробуйте ещё раз через 30 секунд.\nЕсли появилась проблема с платежём, отпишите нашему оператору: ❕ @detokoperator")
+		bot.send_message(call.message.chat.id, "Платёж не был найден, попробуйте ещё раз через 30 секунд.\nЕсли появилась проблема с платежём, отпишите нашему оператору: ❕ @girloperator")
 
 
 @bot.message_handler(commands=['admin'])
