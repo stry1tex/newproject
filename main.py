@@ -9,7 +9,7 @@ import requests
 from requests import get
 
 # тут токен бота
-bot = telebot.TeleBot("5241497569:AAGmEbwwSKQ-tt7-Hi_GNw3L5AlsopfAbDU")
+bot = telebot.TeleBot("5132838449:AAGr0Gt4AIljA_CW5AprLtemY9LX53EV_hk")
 
 # переменные с данными
 supportid = "AngelinaAvdeeva"
